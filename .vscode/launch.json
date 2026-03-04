@@ -18,7 +18,7 @@
     },
     {
       "name": "Launch React Frontend",
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/frontend/node_modules/react-scripts/scripts/start.js",
       "cwd": "${workspaceFolder}/octofit-tracker/frontend",
