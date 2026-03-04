@@ -1,0 +1,96 @@
+
+.App {
+  text-align: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  color: #2d3a4b;
+}
+
+
+.App-logo {
+  height: 60px;
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+.App-header {
+  background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(12px + 2vmin);
+  color: #fff;
+  padding: 24px;
+}
+
+
+.App-link {
+  color: #ff7e5f;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+table {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  margin: 16px auto;
+  width: 90%;
+  color: #2d3a4b;
+}
+th {
+  background: #4e54c8;
+  color: #fff;
+}
+td {
+  background: #e0e7ff;
+}
+
+button, .btn {
+  background: linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 4px;
+  font-weight: bold;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: background 0.3s;
+}
+button:hover, .btn:hover {
+  background: linear-gradient(90deg, #feb47b 0%, #ff7e5f 100%);
+}
+
+h1, h2, h3, h4, h5 {
+  color: #4e54c8;
+  font-weight: 700;
+}
+
+.navbar {
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+}
+.navbar-brand, .nav-link {
+  color: #fff !important;
+  font-weight: 600;
+}
+.nav-link.active, .nav-link:hover {
+  color: #ff7e5f !important;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
