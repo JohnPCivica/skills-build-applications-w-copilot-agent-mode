@@ -3,22 +3,11 @@
 import os
 
 from django.contrib import admin
-from django.http import JsonResponse
 from django.urls import include, path
 from rest_framework import routers
-
-
-codespace_name = os.environ.get('CODESPACE_NAME')
-if codespace_name:
-    base_url = f"https://{codespace_name}-8000.app.github.dev"
-else:
-    base_url = "http://localhost:8000"
-
-
-
-from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet
+from .views import AppUserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router.register(r'users', AppUserViewSet)
 router.register(r'teams', TeamViewSet)
 router.register(r'activities', ActivityViewSet)
 router.register(r'leaderboard', LeaderboardViewSet)

@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
   useEffect(() => {
-    const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
+    const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+    const baseUrl = codespaceName
+      ? `https://${codespaceName}-8000.app.github.dev`
+      : 'http://localhost:8000';
+    const endpoint = `${baseUrl}/api/workouts/`;
     console.log('Fetching Workouts from:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
@@ -21,9 +25,7 @@ const Workouts = () => {
         {workouts.map((workout, idx) => (
           <div key={workout.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
             <strong>Name:</strong> {workout.name}<br />
-            <strong>Type:</strong> {workout.type}<br />
-            <strong>Duration:</strong> {workout.duration} mins<br />
-            <strong>Notes:</strong> {workout.notes || 'None'}
+            <strong>Difficulty:</strong> {workout.difficulty}
           </div>
         ))}
       </div>

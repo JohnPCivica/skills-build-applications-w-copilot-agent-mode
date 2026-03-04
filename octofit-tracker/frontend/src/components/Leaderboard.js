@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
   useEffect(() => {
-    const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
+    const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+    const baseUrl = codespaceName
+      ? `https://${codespaceName}-8000.app.github.dev`
+      : 'http://localhost:8000';
+    const endpoint = `${baseUrl}/api/leaderboard/`;
     console.log('Fetching Leaderboard from:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
@@ -20,9 +24,8 @@ const Leaderboard = () => {
       <div>
         {leaders.map((leader, idx) => (
           <div key={leader.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
-            <strong>Name:</strong> {leader.name}<br />
-            <strong>Score:</strong> {leader.score}<br />
             <strong>Team:</strong> {leader.team}<br />
+            <strong>Points:</strong> {leader.points}<br />
           </div>
         ))}
       </div>

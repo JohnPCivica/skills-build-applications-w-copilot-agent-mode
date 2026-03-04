@@ -1,12 +1,12 @@
 from django.core.management.base import BaseCommand
-from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
+from octofit_tracker.models import AppUser, Team, Activity, Leaderboard, Workout
 
 class Command(BaseCommand):
     help = 'Populate the octofit_db database with test data'
 
     def handle(self, *args, **kwargs):
         # Clear existing data
-        User.objects.all().delete()
+        AppUser.objects.all().delete()
         Team.objects.all().delete()
         Activity.objects.all().delete()
         Leaderboard.objects.all().delete()
@@ -18,10 +18,10 @@ class Command(BaseCommand):
 
         # Users
         users = [
-            User(name='Spider-Man', email='spiderman@marvel.com', team='Marvel'),
-            User(name='Iron Man', email='ironman@marvel.com', team='Marvel'),
-            User(name='Wonder Woman', email='wonderwoman@dc.com', team='DC'),
-            User(name='Batman', email='batman@dc.com', team='DC'),
+            AppUser(name='Spider-Man', email='spiderman@marvel.com', team='Marvel'),
+            AppUser(name='Iron Man', email='ironman@marvel.com', team='Marvel'),
+            AppUser(name='Wonder Woman', email='wonderwoman@dc.com', team='DC'),
+            AppUser(name='Batman', email='batman@dc.com', team='DC'),
         ]
         for user in users:
             user.save()

@@ -21,20 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-19r2fzc5tw0-eq5xt^*%16ibjti*hfvb+(2e%p_r3iwp6##w3j'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'insecure-dev-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() == 'true'
 
-import os
-
-codespace_name = os.environ.get('CODESPACE_NAME')
-if codespace_name:
-    ALLOWED_HOSTS = [f'{codespace_name}-8000.app.github.dev', 'localhost', '127.0.0.1']
-else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-    
-ALLOWED_HOSTS = ['*']
+# Host configuration
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if os.environ.get('CODESPACE_NAME'):
     ALLOWED_HOSTS.append(f"{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
 
@@ -68,13 +61,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'octofit_tracker.urls'
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = ['*']
-CORS_ALLOW_METHODS = ['*']
-
-# Allow all hosts
-ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+if os.environ.get('CODESPACE_NAME'):
+    CORS_ALLOWED_ORIGINS.append(f"https://{os.environ.get('CODESPACE_NAME')}-3000.app.github.dev")
 
 TEMPLATES = [
     {
