@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 const Activities = () => {
   const [activities, setActivities] = useState([]);
   useEffect(() => {
-    const endpoint = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
+    const codespaceName = process.env.REACT_APP_CODESPACE_NAME;
+    const baseUrl = codespaceName
+      ? `https://${codespaceName}-8000.app.github.dev`
+      : 'http://localhost:8000';
+    const endpoint = `${baseUrl}/api/activities/`;
     console.log('Fetching Activities from:', endpoint);
     fetch(endpoint)
       .then(res => res.json())
@@ -20,11 +24,9 @@ const Activities = () => {
       <div>
         {activities.map((activity, idx) => (
           <div key={activity.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
-            <strong>Name:</strong> {activity.name}<br />
+            <strong>User:</strong> {activity.user}<br />
             <strong>Type:</strong> {activity.type}<br />
-            <strong>Date:</strong> {activity.date}<br />
             <strong>Duration:</strong> {activity.duration} mins<br />
-            <strong>Notes:</strong> {activity.notes || 'None'}
           </div>
         ))}
       </div>

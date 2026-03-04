@@ -1,6 +1,6 @@
 from djongo import models
 
-class User(models.Model):
+class AppUser(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     team = models.CharField(max_length=50)
