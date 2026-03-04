@@ -17,11 +17,15 @@ const Leaderboard = () => {
   return (
     <div>
       <h2>Leaderboard</h2>
-      <ul>
+      <div>
         {leaders.map((leader, idx) => (
-          <li key={leader.id || idx}>{leader.name || JSON.stringify(leader)}</li>
+          <div key={leader.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
+            <strong>Name:</strong> {leader.name}<br />
+            <strong>Score:</strong> {leader.score}<br />
+            <strong>Team:</strong> {leader.team}<br />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -17,11 +17,15 @@ const Teams = () => {
   return (
     <div>
       <h2>Teams</h2>
-      <ul>
+      <div>
         {teams.map((team, idx) => (
-          <li key={team.id || idx}>{team.name || JSON.stringify(team)}</li>
+          <div key={team.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
+            <strong>Name:</strong> {team.name}<br />
+            <strong>Members:</strong> {team.members ? team.members.join(', ') : 'None'}<br />
+            <strong>Created:</strong> {team.created_at}<br />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

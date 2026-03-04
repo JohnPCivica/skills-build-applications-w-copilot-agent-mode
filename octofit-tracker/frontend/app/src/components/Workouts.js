@@ -17,11 +17,16 @@ const Workouts = () => {
   return (
     <div>
       <h2>Workouts</h2>
-      <ul>
+      <div>
         {workouts.map((workout, idx) => (
-          <li key={workout.id || idx}>{workout.name || JSON.stringify(workout)}</li>
+          <div key={workout.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
+            <strong>Name:</strong> {workout.name}<br />
+            <strong>Type:</strong> {workout.type}<br />
+            <strong>Duration:</strong> {workout.duration} mins<br />
+            <strong>Notes:</strong> {workout.notes || 'None'}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

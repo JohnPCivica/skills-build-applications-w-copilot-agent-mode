@@ -17,11 +17,16 @@ const Users = () => {
   return (
     <div>
       <h2>Users</h2>
-      <ul>
+      <div>
         {users.map((user, idx) => (
-          <li key={user.id || idx}>{user.username || JSON.stringify(user)}</li>
+          <div key={user.id || idx} style={{border: '1px solid #ccc', borderRadius: '8px', padding: '1em', marginBottom: '1em'}}>
+            <strong>Username:</strong> {user.username}<br />
+            <strong>Email:</strong> {user.email}<br />
+            <strong>Joined:</strong> {user.joined_at}<br />
+            <strong>Team:</strong> {user.team || 'None'}
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
