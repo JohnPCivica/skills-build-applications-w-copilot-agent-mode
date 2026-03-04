@@ -15,23 +15,32 @@ else:
     base_url = "http://localhost:8000"
 
 
+
+from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet, WorkoutViewSet
 router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'teams', TeamViewSet)
+router.register(r'activities', ActivityViewSet)
+router.register(r'leaderboard', LeaderboardViewSet)
+router.register(r'workouts', WorkoutViewSet)
 
 
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
 def api_root(request):
-    return JsonResponse(
-        {
-            "message": "Welcome to the OctoFit Tracker API",
-            "base_url": base_url,
-            "endpoints": {
-                "api_root": f"{base_url}/api/",
-                "admin": f"{base_url}/admin/",
-            },
-        }
-    )
+    return Response({
+        'users': request.build_absolute_uri('api/users/'),
+        'teams': request.build_absolute_uri('api/teams/'),
+        'activities': request.build_absolute_uri('api/activities/'),
+        'leaderboard': request.build_absolute_uri('api/leaderboard/'),
+        'workouts': request.build_absolute_uri('api/workouts/'),
+    })
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', api_root, name='api-root'),
+    path('', api_root, name='api-root'),
     path('api/', include(router.urls)),
 ]
