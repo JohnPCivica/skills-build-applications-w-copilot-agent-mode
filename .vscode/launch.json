@@ -18,16 +18,17 @@
     },
     {
       "name": "Launch React Frontend",
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
-      "program": "${workspaceFolder}/octofit-tracker/frontend/node_modules/react-scripts/scripts/start.js",
-      "cwd": "${workspaceFolder}/octofit-tracker/frontend",
+      "program": "${workspaceFolder}/octofit-tracker/frontend/app/node_modules/react-scripts/scripts/start.js",
+      "cwd": "${workspaceFolder}/octofit-tracker/frontend/app",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["start"],
       "port": 3000,
       "env": {
         "REACT_APP_CODESPACE_NAME": "${env:CODESPACE_NAME}"
-      }
+      },
+      "url": "https://${env:CODESPACE_NAME}-3000.app.github.dev/"
     }
   ]
 }
