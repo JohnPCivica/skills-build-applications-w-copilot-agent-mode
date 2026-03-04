@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 class User(models.Model):
     username = models.CharField(max_length=150, unique=True)
@@ -8,6 +9,11 @@ class User(models.Model):
 
     class Meta:
         app_label = 'api'
+
+    def save(self, *args, **kwargs):
+        if self.password and not self.password.startswith(('pbkdf2_sha256$', 'bcrypt', 'argon2')):
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.username
